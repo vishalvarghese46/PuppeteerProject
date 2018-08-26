@@ -1,0 +1,11 @@
+{
+  "name": "WebAutomation",
+  "version": "1.0.0",
+  "description": "A automation tool that is used do set of the task automatically ",
+  "main": "index.js",
+  "author": "sujil anto",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^1.7.0"
+  }
+}
