@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer');
 
-puppeteer.launch({headless: false}).then(async browser => {
+    puppeteer.launch({headless: false, devtools: false}).then(async browser => {
     // same as puppeteer
     const page = await browser.newPage();
     await page.setViewport({ width: 1200, height: 1000 });
@@ -31,22 +31,29 @@ puppeteer.launch({headless: false}).then(async browser => {
      * */
       // filling the names
       await page.waitForSelector("#name");
-      await page.type("#name", "test1");
+      await page.type("#name", "weather test");
 
       await page.waitForSelector(".select2-input") ;
       await page.type(".select2-input", "united kingdom");
+      await page.click(".select2-result-label");
 
       // TODO : need to figure out dropdows.
       await page.waitForSelector("#postcode");
-      await page.type("#postcode", "CF24");
+      await page.type("#postcode", "Le65");
 
-// Wait until the screen changes and a node matching
-// the selector #logged-in-successfully appears,
-// at which point we know the login was successful
-    //await page.waitForSelector("#logged-in-successfully");
-    //await browser.close();
+    await page.waitForSelector("#s2id_weatherStationId");
+    await page.click("#s2id_weatherStationId");
+
+    await page.waitForSelector("#s2id_select-timezone");
+    await page.click("#s2id_select-timezone");
+    await page.waitForSelector("#select-timezone");
+    await page.select("#select-timezone","Europe/London");
+    // for button
+    await page.waitForSelector(".submit_ccmbr");
+   //await page.type(" #s2id_select-timezone > .select2-drop .select2-search .select2-input", "London");
+    await page.click(".submit_ccmbr");
 });
 
 
-console.log( puppeteer );
+
 
